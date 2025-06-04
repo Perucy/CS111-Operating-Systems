@@ -1,0 +1,27 @@
+/*while (chow_time()) {  // While there are ants to eat
+    for (int i = 0; i < AANTHILLS; i++) {
+        if (sem_trywait(&anthill_access[i]) == 0) {  // Try to access anthill
+            pthread_mutex_lock(&ants_lock[i]);
+            if (ants_left[i] > 0) {
+                ants_left[i]--;  // Decrement ants count
+                pthread_mutex_unlock(&ants_lock[i]);
+
+                double start_time = elapsed();
+                if (slurp(aname, i)) {  // Successful slurp
+                    while (elapsed() - start_time < 1);  // Slurping (1 second)
+                    sem_post(&anthill_access[i]);  // Release anthill
+                    while (elapsed() - start_time < 2);  // Swallowing (2 seconds)
+                } else {
+                    pthread_mutex_unlock(&ants_lock[i]);
+                    sem_post(&anthill_access[i]);  // Release anthill
+                    while (elapsed() - start_time < 4);  // Sulking (4 seconds)
+                }
+                break;  // Stop trying anthills after a successful attempt
+            } else {
+                pthread_mutex_unlock(&ants_lock[i]);
+                sem_post(&anthill_access[i]);  // Release anthill if empty
+            }
+        }
+    }
+}
+*/
